@@ -1,0 +1,57 @@
+# Sequential LED Control with Arduino (For Loop)
+
+This project is an entry-level Arduino example designed to demonstrate how to sequentially turn multiple LEDs on and off (chasing LED pattern) using a `for` loop.
+
+__________________________________________________________________________________________________________________________________________________
+
+### 🧰 Materials
+
+- 1x Arduino Uno
+- 3x LEDs (e.g., Red, Yellow, Green)
+- 3x Resistors (min 220Ω)
+- 1x Breadboard
+- Jumper wires
+
+__________________________________________________________________________________________________________________________________________________
+
+### 🔌 Circuit Assembly (Step-by-Step)
+
+1. **Place the LEDs:** Insert the 3 LEDs into the breadboard. Pay attention to their polarity: the longer leg is the positive terminal (Anode), and the shorter leg is the negative terminal (Cathode).
+
+2. **Connect the Signal (Positive) Lines:** Connect the long leg (+) of each LED to the Arduino's digital pins using jumper wires (e.g., Red LED to Pin 2, Yellow LED to Pin 3, Green LED to Pin 4).
+
+3. **Add Current-Limiting Resistors:** Connect one end of a resistor (min 220Ω) to the short leg (-) of each LED, and connect the other end of the resistor to the negative (-) power rail on the breadboard.
+
+4. **Ground the Circuit:** Connect one of the Arduino's **GND** pins to the negative (-) power rail on the breadboard using a jumper wire.
+
+5. **Upload & Run:** Connect the Arduino to your computer using the USB programming cable. Open the Arduino IDE, paste the code, select your board/port, and click **Upload**.
+
+__________________________________________________________________________________________________________________________________________________
+
+## 🛠️ Code Block
+
+```cpp
+// Variable declaration to store the read digital state
+int durum; 
+
+void setup() {
+  // Configuring pins 2, 3, and 4 as outputs
+  pinMode(2, OUTPUT);
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+}
+
+void loop() {
+  // Variable 'i' starts at 2 and runs as long as it is less than 5 (2, 3, 4)
+  for(int i = 2; i < 5; i++) {
+    
+    // Reads the current digital state of the pin (HIGH / LOW)
+    durum = digitalRead(i); 
+    
+    digitalWrite(i, HIGH); // Sends power to the LED (Turn ON)
+    delay(1000);           // Waits for 1 second
+    
+    digitalWrite(i, LOW);  // Cuts power to the LED (Turn OFF)
+    delay(1000);           // Waits for 1 second
+  }
+}
